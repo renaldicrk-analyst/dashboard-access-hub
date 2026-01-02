@@ -106,7 +106,7 @@ st.markdown(
     """
     <h1 style="
         text-align:center;
-        color:#1f4e79;
+        color:#1f4e79; font-size: 30px;
         margin-bottom: 1px;
         margin-left: 30px
     ">
