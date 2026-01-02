@@ -2,18 +2,14 @@ import streamlit as st
 import base64
 import os
 
-# ==========================
 # PAGE CONFIG
-# ==========================
 st.set_page_config(
-    page_title="Dashboard Access Hub",
-    page_icon="📊",
+    page_title="Data Access Hub",
+    page_icon="📂",
     layout="wide"
 )
 
-# ==========================
 # BACKGROUND FUNCTION
-# ==========================
 def set_background(image_path):
     if not os.path.exists(image_path):
         st.error(f"File background tidak ditemukan: {image_path}")
@@ -35,12 +31,13 @@ def set_background(image_path):
         }}
 
         .dashboard-card {{
-            background-color: rgba(255,255,255,0.85);
+            background-color: rgba(255,255,255,0.88);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             transition: transform 0.2s;
             margin-bottom: 20px;
+            min-height: 220px;
         }}
 
         .dashboard-card:hover {{
@@ -48,14 +45,16 @@ def set_background(image_path):
         }}
 
         .dashboard-title {{
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #1f4e79;
         }}
 
-        .dashboard-link {{
-            text-decoration: none;
+        .dashboard-desc {{
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 15px;
         }}
 
         button.dashboard-btn {{
@@ -72,9 +71,7 @@ def set_background(image_path):
         unsafe_allow_html=True
     )
 
-# ==========================
 # FOOTER LOGO FUNCTION
-# ==========================
 def footer_logo(image_path):
     if not os.path.exists(image_path):
         st.error(f"File logo tidak ditemukan: {image_path}")
@@ -99,54 +96,59 @@ def footer_logo(image_path):
         unsafe_allow_html=True
     )
 
-# ==========================
 # SET BACKGROUND
-# ==========================
 set_background("background.png")
 
-# ==========================
 # HEADER
-# ==========================
 st.markdown(
-    "<h1 style='text-align:center; color:#1f4e79;'>Dashboard Access Hub</h1>",
+    "<h1 style='text-align:center; color:#1f4e79;'>Data Access Hub</h1>",
     unsafe_allow_html=True
 )
 st.markdown(
-    "<p style='text-align:center; color:#333;'>List Dashboard Monitoring</p>",
+    "<p style='text-align:center; color:#333;'>Akses Dashboard Monitoring & Form Operasional</p>",
     unsafe_allow_html=True
 )
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ==========================
-# DASHBOARD LIST
-# ==========================
+# DASHBOARD SECTION
+st.markdown(
+    "<h2 style='color:#1f4e79;'>Dashboard Monitoring</h2>",
+    unsafe_allow_html=True
+)
+
 dashboards = [
     {
         "title": "Weekly Report - SPV Performance",
+        "desc": "Merekap performa SPV secara mingguan termasuk pencapaian operasional secara menyeluruh",
         "link": "https://lookerstudio.google.com/reporting/261bcaba-fe01-4c49-9b3e-bc72bf7dbee1/page/JMfjF"
     },
     {
         "title": "Tactical for SPV (Salary Cost & Over Crew)",
+        "desc": "Monitoring salary cost dan potensi over crew untuk pengambilan keputusan taktis di level SPV",
         "link": "https://lookerstudio.google.com/reporting/1ebc1632-bce6-4aed-8568-e5b371230d67/page/p_7ygpse5oyd"
     },
     {
         "title": "Operational Cost All (COGS, Movement, COGM)",
+        "desc": "Ringkasan biaya operasional meliputi COGS, pergerakan barang dan cost of goods manufactured",
         "link": "https://lookerstudio.google.com/reporting/1ef69901-4be4-43c8-a525-2939d660ec51/page/p_l6drp93lxd"
+    },
+    {
+        "title": "Sales Report",
+        "desc": "Rekap performa penjualan mencakup pencapaian sales, tren penjualan dan kontribusi outlet",
+        "link": "https://lookerstudio.google.com/u/0/reporting/c5c55fd9-5274-4f02-a645-96742c76e894/page/h7PWF"
     }
 ]
 
-# ==========================
-# DISPLAY DASHBOARD CARDS
-# ==========================
-cols = st.columns(3)
+cols = st.columns(4)
 for idx, dash in enumerate(dashboards):
-    with cols[idx % 3]:
+    with cols[idx % 4]:
         st.markdown(
             f"""
             <div class="dashboard-card">
                 <div class="dashboard-title">{dash['title']}</div>
-                <a class="dashboard-link" href="{dash['link']}" target="_blank">
+                <div class="dashboard-desc">{dash['desc']}</div>
+                <a href="{dash['link']}" target="_blank">
                     <button class="dashboard-btn">Masuk ke Dashboard</button>
                 </a>
             </div>
@@ -154,7 +156,51 @@ for idx, dash in enumerate(dashboards):
             unsafe_allow_html=True
         )
 
-# ==========================
+# LARK FORM SECTION
+st.markdown("<br>", unsafe_allow_html=True)
+st.markdown(
+    "<h2 style='color:#1f4e79;'>Lark Form Operasional</h2>",
+    unsafe_allow_html=True
+)
+
+forms = [
+    {
+        "title": "Form Checkin Visit",
+        "desc": "Form wajib untuk track kehadiran dan waktu awal visit ke outlet",
+        "link": "https://bit.ly/checkin-visit"
+    },
+    {
+        "title": "Form Checklist Visit",
+        "desc": "Checklist kondisi outlet saat visit mencakup kepatuhan terhadap Standar Operasional",
+        "link": "https://bit.ly/checklist-visit"
+    },
+    {
+        "title": "Form Daily SO",
+        "desc": "Form ini digunakan untuk mencatat jumlah stok fisik aktual di outlet pada hari berjalan",
+        "link": "https://ajp0nod3vmbt.jp.larksuite.com/base/XQFMbTuwPa03rMsCxAljSCBep0P"
+    },
+    {
+        "title": "Absensi Crew",
+        "desc": "Form absensi crew outlet (bersifat wajib) untuk mencatat kehadiran crew di outlet",
+        "link": "https://ajp0nod3vmbt.jp.larksuite.com/base/F8fcbvH5laRyjXsyCIzjSsMtpEc"
+    }
+]
+
+cols = st.columns(4)
+for idx, form in enumerate(forms):
+    with cols[idx % 4]:
+        st.markdown(
+            f"""
+            <div class="dashboard-card">
+                <div class="dashboard-title">{form['title']}</div>
+                <div class="dashboard-desc">{form['desc']}</div>
+                <a href="{form['link']}" target="_blank">
+                    <button class="dashboard-btn">Masuk ke Form</button>
+                </a>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
 # FOOTER
-# ==========================
 footer_logo("logo-crk.png")
