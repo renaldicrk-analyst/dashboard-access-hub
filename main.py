@@ -37,11 +37,13 @@ def set_background(image_path):
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             transition: transform 0.2s;
             margin-bottom: 20px;
-            min-height: 220px;
+            min-height: 200px;
         }}
 
+        
+
         .dashboard-card:hover {{
-            transform: translateY(-5px);
+            transform: translateY(-10px);
         }}
 
         .dashboard-title {{
@@ -101,19 +103,38 @@ set_background("background.png")
 
 # HEADER
 st.markdown(
-    "<h1 style='text-align:center; color:#1f4e79;'>Data Access Hub</h1>",
+    """
+    <h1 style="
+        text-align:center;
+        color:#1f4e79;
+        margin-bottom: 1px;
+        margin-left: 30px
+    ">
+        Data Access Hub
+    </h1>
+    """,
     unsafe_allow_html=True
 )
+
 st.markdown(
-    "<p style='text-align:center; color:#333;'>Akses Dashboard Monitoring & Form Operasional</p>",
+    """
+    <p style="
+        text-align:center;
+        color:#333;
+        margin-top: -15px;
+    ">
+        Akses Dashboard Monitoring & Form Operasional
+    </p>
+    """,
     unsafe_allow_html=True
 )
+
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 # DASHBOARD SECTION
 st.markdown(
-    "<h2 style='color:#1f4e79;'>Dashboard Monitoring</h2>",
+    "<h2 style='color:#1f4e79;font-size:28px;'>Dashboard Monitoring</h2>",
     unsafe_allow_html=True
 )
 
@@ -129,8 +150,8 @@ dashboards = [
         "link": "https://lookerstudio.google.com/reporting/1ebc1632-bce6-4aed-8568-e5b371230d67/page/p_7ygpse5oyd"
     },
     {
-        "title": "Operational Cost All (COGS, Movement, COGM)",
-        "desc": "Ringkasan biaya operasional meliputi COGS, pergerakan barang dan cost of goods manufactured",
+        "title": "Operational Cost (COGS & COGM)",
+        "desc": "Ringkasan biaya operasional meliputi COGS, pergerakan barang dan COGM",
         "link": "https://lookerstudio.google.com/reporting/1ef69901-4be4-43c8-a525-2939d660ec51/page/p_l6drp93lxd"
     },
     {
@@ -159,7 +180,7 @@ for idx, dash in enumerate(dashboards):
 # LARK FORM SECTION
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
-    "<h2 style='color:#1f4e79;'>Lark Form Operasional</h2>",
+    "<h2 style='color:#1f4e79;font-size:28px;'>Lark Form Operasional</h2>",
     unsafe_allow_html=True
 )
 
